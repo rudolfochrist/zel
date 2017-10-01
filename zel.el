@@ -175,6 +175,19 @@ exist adds it to the frecent list."
     (setq zel--frecent-list (read (current-buffer)))))
 
 
+(defun zel-diplay-rankings ()
+  "Shows the current ranking of files."
+  (interactive)
+  (let ((items (zel--frecent-file-paths-with-score)))
+    (with-output-to-temp-buffer "*zel-frecent-rankings*"
+      (set-buffer "*zel-frecent-rankings*")
+      (erase-buffer)
+      (dolist (item items)
+        (insert (format "\n% 4d -- %s"
+                        (cdr item)
+                        (first item)))))))
+
+
 (defun zel-reset-frecent-list (&optional write-history-p)
   "Empties the frecent list.
 
