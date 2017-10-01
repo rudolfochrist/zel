@@ -63,6 +63,36 @@
 
 ;;;; Variables
 
+(defgroup zel ()
+  "Access frecent files easily."
+  :group 'convenience
+  :group 'files
+  :group 'matching)
+
+
+(defcustom zel-history-file "~/.emacs.d/zel-history"
+  "File where the history is saved."
+  :type 'file)
+
+
+(defvar zel--aging-threshold 9000
+  "Threshold used to clean out old items.
+
+When the sum of all entries reach this threshold older items are
+removed.")
+
+
+(defvar zel--aging-multiplier 0.99
+  "Multiplier used on each item do determine the age of it.
+
+If the age of an item after applying the multiplier is less than
+1 it's determined to be too old and gets removed.")
+
+
+(defvar zel--frecent-list nil
+  "The list with the frecent items.")
+
+
 ;;;; Functions
 
 ;;;;; Commands
