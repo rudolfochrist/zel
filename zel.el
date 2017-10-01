@@ -136,6 +136,30 @@ exist adds it to the frecent list."
     (setq zel--frecent-list (read (current-buffer)))))
 
 
+;;;###autoload
+(defun zel-install ()
+  "Install `zell'.
+
+Registers `zel' on the following hooks:
+
+- `find-file-hook': to update the frecent list.
+- `kill-emacs-hook': write the frecent list to the `zel-history-file'."
+  (interactive)
+  (unless (file-exists-p (expand-file-name zel-history-file))
+    (zel-write-history))
+  (zel-load-history)
+  (add-hook 'find-file-hook #'zel--update-frecent-list)
+  (add-hook 'kill-emacs-hook #'zel-write-history))
+
+
+;;;###autoload
+(defun zel-uninstall ()
+  "Deregisters hooks."
+  (interactive)
+  (setq zel--frecent-list nil)
+  (remove-hook 'find-file-hook #'zel--update-frecent-list)
+  (remove-hook 'kill-emacs-hook #'zel-write-history))
+
 ;;;; Footer
 
 (provide 'zel)
