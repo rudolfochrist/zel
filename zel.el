@@ -95,6 +95,19 @@ If the age of an item after applying the multiplier is less than
 
 ;;;; Functions
 
+(defun zel--update-frecent-list ()
+  "Update the frecent list.
+
+This updates the score for current buffer's file or if it doesn't
+exist adds it to the frecent list."
+  ;; ignore buffers without file
+  (when-let ((filename (buffer-file-name)))
+    (if-let ((entry (assoc filename zel--frecent-list)))
+        (setf (cdr entry)
+              (frecency-update (cdr entry)))
+      (push (list filename (frecency-update '()))
+            zel--frecent-list))))
+
 ;;;;; Commands
 
 (cl-defmacro zel--with-history-buffer (&body body)
