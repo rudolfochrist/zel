@@ -74,6 +74,13 @@
   "File where the history is saved."
   :type 'file)
 
+(defcustom zel-exclude-patterns '(".*/\.#.*" "\.git/COMMIT_EDITMSG")
+  "List of regexps to exclude files.
+
+Each file-name that matches one of this patterns is not added to
+the frecent list."
+  :type '(repeat regexp))
+
 
 (defvar zel--aging-threshold 9000
   "Threshold used to clean out old items.
@@ -95,18 +102,28 @@ If the age of an item after applying the multiplier is less than
 
 ;;;; Functions
 
+(defun zel--file-excluded-p (filename)
+  "Evaluate to t if the file with FILENAME should be excluded.
+
+FILENAME has to be absolute."
+  (cl-some (lambda (pattern)
+             (string-match-p pattern filename))
+           zel-exclude-patterns))
+
+
 (defun zel--update-frecent-list ()
   "Update the frecent list.
 
 This updates the score for current buffer's file or if it doesn't
 exist adds it to the frecent list."
   ;; ignore buffers without file
-  (when-let ((filename (buffer-file-name)))
-    (if-let ((entry (assoc filename zel--frecent-list)))
-        (setf (cdr entry)
-              (frecency-update (cdr entry)))
-      (push (list filename (frecency-update '()))
-            zel--frecent-list))))
+  (when-let ((file-name (buffer-file-name)))
+    (unless (zel--file-excluded-p file-name)
+      (if-let ((entry (assoc file-name zel--frecent-list)))
+          (setf (cadr entry)
+                (frecency-update (cadr entry)))
+        (push (list file-name (frecency-update '()))
+              zel--frecent-list)))))
 
 ;;;;; Commands
 
