@@ -5,7 +5,7 @@
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
 ;; URL: tbd
 ;; Version: 0.1.0-pre
-;; Package-Requires: ((emacs "25") frecency)
+;; Package-Requires: ((emacs "25") cl-lib frecency)
 ;; Keywords: convenience, files, matching
 
 ;;; Commentary:
@@ -57,6 +57,9 @@
 ;;; Code:
 
 ;;;; Requirements
+
+(require 'cl-lib)
+(require 'frecency)
 
 ;;;; Variables
 
