@@ -102,6 +102,10 @@ If the age of an item after applying the multiplier is less than
   "The list with the frecent items.")
 
 
+(defvar zel--completing-read-history '()
+  "History used for `completing-read'.")
+
+
 ;;;; Functions
 
 (defun zel--file-excluded-p (filename)
@@ -198,6 +202,20 @@ well."
   (setq zel--frecent-list nil)
   (when write-history-p
     (zel-write-history)))
+
+
+(defun zel-find-file-frecent (file-name)
+  "Visit frecent file."
+  (interactive
+   (list (completing-read
+          "Frecent: "
+          (zel--frecent-file-paths)
+          nil
+          t
+          zel--completing-read-history)))
+  (if (file-exists-p file-name)
+      (find-file file-name)
+    (user-error "~A doesn't exist!" file-name)))
 
 
 ;;;###autoload
