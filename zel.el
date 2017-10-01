@@ -112,6 +112,10 @@ FILENAME has to be absolute."
              (string-match-p pattern filename))
            zel-exclude-patterns))
 
+(defun zel--entry-score (entry)
+  "Return score for ENTRY."
+  (frecency-score (cadr entry)))
+
 
 (defun zel--update-frecent-list ()
   "Update the frecent list.
@@ -125,7 +129,10 @@ exist adds it to the frecent list."
           (setf (cadr entry)
                 (frecency-update (cadr entry)))
         (push (list file-name (frecency-update '()))
-              zel--frecent-list)))))
+              zel--frecent-list))
+      ;; sort frecent files
+      (setq zel--frecent-list
+            (cl-sort zel--frecent-list #'> :key #'zel--entry-score)))))
 
 ;;;;; Commands
 
