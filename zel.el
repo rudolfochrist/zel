@@ -5,8 +5,8 @@
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
 ;; URL: tbd
 ;; Version: 0.1.0-pre
-;; Package-Requires: ((emacs "25"))
-;; Keywords: completion, matching, file access
+;; Package-Requires: ((emacs "25") frecency)
+;; Keywords: convenience, files, matching
 
 ;;; Commentary:
 
