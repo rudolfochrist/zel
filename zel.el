@@ -97,6 +97,32 @@ If the age of an item after applying the multiplier is less than
 
 ;;;;; Commands
 
+(cl-defmacro zel--with-history-buffer (&body body)
+  (declare (indent defun))
+  (let ((buffer (cl-gensym "buffer")))
+    `(let ((,buffer (find-file-noselect (expand-file-name zel-history-file) t)))
+       (with-current-buffer ,buffer
+         ,@body))))
+
+
+(defun zel-write-history ()
+  "Writes the current frecent list to the `zel-history-file'."
+  (interactive)
+  (zel--with-history-buffer
+    (erase-buffer)
+    (goto-char (point-min))
+    (print zel--frecent-list (current-buffer))
+    (save-buffer)))
+
+
+(defun zel-load-history ()
+  "Load the history file found under `zel-history-file'."
+  (interactive)
+  (zel--with-history-buffer
+    (goto-char (point-min))
+    (setq zel--frecent-list (read (current-buffer)))))
+
+
 ;;;; Footer
 
 (provide 'zel)
