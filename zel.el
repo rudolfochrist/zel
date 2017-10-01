@@ -5,7 +5,7 @@
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
 ;; URL: tbd
 ;; Version: 0.1.0-pre
-;; Package-Requires: ((emacs "25") cl-lib frecency)
+;; Package-Requires: ((emacs "25") cl-lib subr-x frecency)
 ;; Keywords: convenience, files, matching
 
 ;;; Commentary:
@@ -59,6 +59,7 @@
 ;;;; Requirements
 
 (require 'cl-lib)
+(require 'subr-x)
 (require 'frecency)
 
 ;;;; Variables
@@ -73,6 +74,7 @@
 (defcustom zel-history-file "~/.emacs.d/zel-history"
   "File where the history is saved."
   :type 'file)
+
 
 (defcustom zel-exclude-patterns '(".*/\.#.*" "\.git/COMMIT_EDITMSG")
   "List of regexps to exclude files.
