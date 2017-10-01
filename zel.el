@@ -134,6 +134,19 @@ exist adds it to the frecent list."
       (setq zel--frecent-list
             (cl-sort zel--frecent-list #'> :key #'zel--entry-score)))))
 
+(defun zel--frecent-file-paths ()
+  "List frecent file paths in descending order by their rank."
+  (mapcar #'first zel--frecent-list))
+
+
+(defun zel--frecent-file-paths-with-score ()
+  "List all frecent file paths with their scrore."
+  (mapcar (lambda (entry)
+            (cons (car entry)
+                  (zel--entry-score entry)))
+          zel--frecent-list))
+
+
 ;;;;; Commands
 
 (cl-defmacro zel--with-history-buffer (&body body)
