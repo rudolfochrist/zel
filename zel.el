@@ -152,6 +152,16 @@ exist adds it to the frecent list."
     (goto-char (point-min))
     (setq zel--frecent-list (read (current-buffer)))))
 
+(defun zel-reset-frecent-list (&optional write-history-p)
+  "Empties the frecent list.
+
+If WRITE-HISTORY-P is non-nil (or `zel-reset-frecent-list' is
+called with a prefix argument) the history files is saved as
+well."
+  (interactive "P")
+  (setq zel--frecent-list nil)
+  (when write-history-p
+    (zel-write-history)))
 
 ;;;###autoload
 (defun zel-install ()
