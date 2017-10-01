@@ -152,6 +152,7 @@ exist adds it to the frecent list."
     (goto-char (point-min))
     (setq zel--frecent-list (read (current-buffer)))))
 
+
 (defun zel-reset-frecent-list (&optional write-history-p)
   "Empties the frecent list.
 
@@ -163,9 +164,10 @@ well."
   (when write-history-p
     (zel-write-history)))
 
+
 ;;;###autoload
 (defun zel-install ()
-  "Install `zell'.
+  "Install `zel'.
 
 Registers `zel' on the following hooks:
 
@@ -183,6 +185,7 @@ Registers `zel' on the following hooks:
 (defun zel-uninstall ()
   "Deregisters hooks."
   (interactive)
+  (zel-write-history)
   (setq zel--frecent-list nil)
   (remove-hook 'find-file-hook #'zel--update-frecent-list)
   (remove-hook 'kill-emacs-hook #'zel-write-history))
