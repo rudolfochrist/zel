@@ -16,12 +16,13 @@
 ;; The list of 'frecent' files underlies two concepts:
 
 ;; 1. The files are not only ranked on how recent they have been
-;; visited, but also how frequent they have been visited.  This a file
-;; that has been means visited multiple times last week gets a higher
-;; score as file visited once yesterday.
+;; visited, but also how frequent they have been visited.  A file that
+;; has been visited multiple times last week gets a higher score as
+;; file visited once yesterday.  Outliers should not compromise the
+;; 'frecent' list.
 
-;; 2. Entries in the 'frecent' list undergo aging.  If the age of
-;; entries falls under a threshold it gets removed from the 'frecent'
+;; 2. Entries in the 'frecent' list undergo aging.  If the age of a
+;; entry falls under a threshold it gets removed from the 'frecent'
 ;; list.
 
 ;; [1] https://github.com/rupa/z
@@ -53,20 +54,22 @@
 
 ;;;; Usage
 
-;; 1. (require 'zel)
-;; 2. (zel-install)
-;; 3. Bind it to a key, e.g. (global-set-key (kbd "C-x C-r") #'zel-find-file-frecent)
-;; 4. Visit some files to build up the database
-;; 5. Profit.
+;; 1. Run (zel-install)
+;; 2. Bind `zel-find-file-frecent' it to a key,
+;;    e.g. (global-set-key (kbd "C-x C-r") #'zel-find-file-frecent)
+;; 3. Visit some files to build up the database
+;; 4. Profit.
 
-;; As default the 'frecent' history is save under
-;; `zel-history-file'.  Run 'M-x customize-group RET zel' for more
-;; customization options.
+;; As default the 'frecent' history is saved to `zel-history-file'.
+;; Run 'M-x customize-group RET zel' for more customization options.
 
 ;; Besides `zel-find-file-frecent', that lets you select a file with
 ;; `completing-read' and switches to it, there is also the command
 ;; `zel-diplay-rankings' that shows all entries of the 'frecent' list
 ;; along with their score.
+
+;; If you'd like to stop building up the 'frecent' list then run
+;; `zel-uninstall' to deregister `zel' from all hooks.
 
 ;;;; Credits
 
