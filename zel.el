@@ -89,7 +89,7 @@
   :type 'file)
 
 
-(defcustom zel-exclude-patterns '(".*/\.#.*" "\.git/COMMIT_EDITMSG")
+(defcustom zel-exclude-patterns '(".*/\.#.*" "\.git/COMMIT_EDITMSG" "\.git/MERGE_MSG")
   "List of regexps to exclude files.
 
 Each file-name that matches one of this patterns is not added to
