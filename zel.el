@@ -3,14 +3,17 @@
 ;; Copyright (C) 2017 Free Software Foundation, Inc.
 
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
-;; URL: tbd
+;; URL: https://github.com/rudolfochrist/zel
 ;; Version: 0.1.0-pre
 ;; Package-Requires: ((emacs "25") cl-lib subr-x frecency)
 ;; Keywords: convenience, files, matching
 
 ;;; Commentary:
 
-;; tbd
+;; zel tracks the most used files, based on 'frecency'. Zell is
+;; basically a port of z[1] in Emacs Lisp.
+
+;; [1] https://github.com/rupa/z
 
 ;;;; Installation
 
@@ -20,13 +23,17 @@
 
 ;;;;; use-package
 
-;; tbd.
+;; (use-package zel
+;;   :ensure t
+;;   :demand t
+;;   :bind (("C-x C-r" . zel-find-file-frecent))
+;;   :config (zel-install))
 
 ;;;;; Manual
 
 ;; Install these required packages:
 
-;; - tbd
+;; - frecency
 
 ;; Then put this file in your load-path, and put this in your init
 ;; file:
@@ -34,6 +41,12 @@
 ;; (require 'zel)
 
 ;;;; Usage
+
+;; 1. (require 'zel)
+;; 2. (zel-install)
+;; 3. Bind it to a key, e.g. (global-set-key (kbd "C-x C-r") #'zel-find-file-frecent)
+;; 4. Visit some files to build up the database
+;; 5. Profit.
 
 ;;;; Credits
 
