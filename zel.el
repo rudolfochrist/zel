@@ -151,6 +151,23 @@ exist adds it to the frecent list."
           zel--frecent-list))
 
 
+(defun zel--frecent-sum ()
+  "Calculates the sum of items in the frecent list."
+  (cl-reduce #'+ zel--frecent-list :key #'zel--entry-score))
+
+
+(defun zel--cleanup-history ()
+  "Remove too old items from history."
+  (when (> (zel--frecent-sum) zel--aging-threshold)
+    (setq zel--frecent-list
+          (cl-sort (cl-remove-if (lambda (entry)
+                                   (< (* (zel--entry-score entry) zel--aging-multiplier)
+                                      1))
+                                 zel--frecent-list)
+                   #'>
+                   :key #'zel--entry-score))))
+
+
 ;;;;; Commands
 
 (cl-defmacro zel--with-history-buffer (&body body)
@@ -164,6 +181,7 @@ exist adds it to the frecent list."
 (defun zel-write-history ()
   "Writes the current frecent list to the `zel-history-file'."
   (interactive)
+  (zel--cleanup-history)
   (zel--with-history-buffer
     (erase-buffer)
     (goto-char (point-min))
