@@ -55,7 +55,7 @@
 ;;;; Usage
 
 ;; 1. Run (zel-install)
-;; 2. Bind `zel-find-file-frecent' it to a key,
+;; 2. Bind `zel-find-file-frecent' to a key,
 ;;    e.g. (global-set-key (kbd "C-x C-r") #'zel-find-file-frecent)
 ;; 3. Visit some files to build up the database
 ;; 4. Profit.
@@ -74,6 +74,7 @@
 ;;;; Credits
 
 ;; - https://github.com/rupa/z
+;; - https://github.com/alphapapa/frecency.el
 
 ;;; License
 
