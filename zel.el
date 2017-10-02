@@ -255,13 +255,15 @@ well."
 
 Registers `zel' on the following hooks:
 
-- `find-file-hook': to update the frecent list.
+- `find-file-hook': to add new items to the frecent list .
+- `focus-in-hook': updates this files score when revisiting its buffer.
 - `kill-emacs-hook': write the frecent list to the `zel-history-file'."
   (interactive)
   (unless (file-exists-p (expand-file-name zel-history-file))
     (zel-write-history))
   (zel-load-history)
   (add-hook 'find-file-hook #'zel--update-frecent-list)
+  (add-hook 'focus-in-hook #'zel--update-frecent-list)
   (add-hook 'kill-emacs-hook #'zel-write-history))
 
 
@@ -272,6 +274,7 @@ Registers `zel' on the following hooks:
   (zel-write-history)
   (setq zel--frecent-list nil)
   (remove-hook 'find-file-hook #'zel--update-frecent-list)
+  (remove-hook 'focus-in-hook #'zel--update-frecent-list)
   (remove-hook 'kill-emacs-hook #'zel-write-history))
 
 ;;;; Footer
