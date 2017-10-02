@@ -10,17 +10,17 @@
 
 ;;; Commentary:
 
-;; zel tracks the most used files, based on 'frecency'. Zel is
+;; zel tracks the most used files, based on 'frecency'.  Zel is
 ;; basically a port of z[1] in Emacs Lisp.
 
 ;; The list of 'frecent' files underlies two concepts:
 
 ;; 1. The files are not only ranked on how recent they have been
-;; visited, but also how frequent they have been visited. This a file
+;; visited, but also how frequent they have been visited.  This a file
 ;; that has been means visited multiple times last week gets a higher
 ;; score as file visited once yesterday.
 
-;; 2. Entries in the 'frecent' list undergo aging. If the age of
+;; 2. Entries in the 'frecent' list undergo aging.  If the age of
 ;; entries falls under a threshold it gets removed from the 'frecent'
 ;; list.
 
@@ -60,7 +60,7 @@
 ;; 5. Profit.
 
 ;; As default the 'frecent' history is save under
-;; `zel-history-file'. Run 'M-x customize-group RET zel' for more
+;; `zel-history-file'.  Run 'M-x customize-group RET zel' for more
 ;; customization options.
 
 ;; Besides `zel-find-file-frecent', that lets you select a file with
@@ -231,7 +231,7 @@ exist adds it to the frecent list."
 
 
 (defun zel-diplay-rankings ()
-  "Shows the current ranking of files."
+  "Show the current ranking of files."
   (interactive)
   (let ((items (zel--frecent-file-paths-with-score)))
     (with-output-to-temp-buffer "*zel-frecent-rankings*"
@@ -256,7 +256,7 @@ well."
 
 
 (defun zel-find-file-frecent (file-name)
-  "Visit frecent file."
+  "Visit frecent file with FILE-NAME."
   (interactive
    (list (completing-read
           "Frecent: "
