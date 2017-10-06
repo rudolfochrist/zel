@@ -266,17 +266,22 @@ well."
     (zel-write-history)))
 
 
-(defun zel-find-file-frecent (file-name)
-  "Visit frecent file with FILE-NAME."
+(defun zel-find-file-frecent (file-name &optional open-directory-p)
+  "Visit frecent file with FILE-NAME.
+
+When OPEN-DIRECTORY-P is non-nil (or by calling it with a prefix
+argument) the files directory will be opened i `dired'."
   (interactive
-   (list (completing-read
-          "Frecent: "
-          (zel--frecent-file-paths)
-          nil
-          t
-          zel--completing-read-history)))
+   (list (completing-read "Frecent: "
+                          (zel--frecent-file-paths)
+                          nil
+                          t
+                          zel--completing-read-history)
+         current-prefix-arg))
   (if (file-exists-p file-name)
-      (find-file file-name)
+      (if open-directory-p
+          (dired (file-name-directory file-name))
+        (find-file file-name))
     (when (yes-or-no-p (format "File %s doesn't exist. Do you want to remove it from the list?" file-name))
       (setq zel--frecent-list
             (cl-remove file-name zel--frecent-list
