@@ -240,6 +240,7 @@ exist adds it to the frecent list."
     (setq zel--frecent-list (read (current-buffer)))))
 
 
+
 (defun zel-diplay-rankings ()
   "Show the current ranking of files."
   (interactive)
@@ -276,7 +277,11 @@ well."
           zel--completing-read-history)))
   (if (file-exists-p file-name)
       (find-file file-name)
-    (user-error "~A doesn't exist!" file-name)))
+    (when (yes-or-no-p (format "File %s doesn't exist. Do you want to remove it from the list?" file-name))
+      (setq zel--frecent-list
+            (cl-remove file-name zel--frecent-list
+                       :test #'string=
+                       :key #'car)))))
 
 
 ;;;###autoload
