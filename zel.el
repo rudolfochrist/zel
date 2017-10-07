@@ -187,7 +187,7 @@ exist adds it to the frecent list."
 
 (defun zel--frecent-file-paths ()
   "List frecent file paths in descending order by their rank."
-  (mapcar #'first zel--frecent-list))
+  (mapcar #'car zel--frecent-list))
 
 
 (defun zel--frecent-file-paths-with-score ()
@@ -255,7 +255,7 @@ exist adds it to the frecent list."
       (dolist (item items)
         (insert (format "\n% 4d -- %s"
                         (cdr item)
-                        (first item)))))))
+                        (car item)))))))
 
 
 (defun zel-reset-frecent-list (&optional write-history-p)
