@@ -144,7 +144,7 @@ If the age of an item after applying the multiplier is less than
 
 
 (defvar zel--installed-p nil
-  "Indicates if `zel' has been installed. ")
+  "Indicates if `zel' has been installed.")
 
 
 ;;;; Functions
@@ -170,8 +170,7 @@ FILENAME has to be absolute."
 (defun zel--update-frecent-list (&optional create-entry-p)
   "Update the frecent list.
 
-This updates the score for current buffer's file or if it doesn't
-exist adds it to the frecent list."
+When CREATE-ENTRY-P is non-nil create new entries."
   ;; ignore buffers without file
   (when-let ((file-name (buffer-file-name)))
     (unless (zel--file-excluded-p file-name)
