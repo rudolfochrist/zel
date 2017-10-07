@@ -324,6 +324,14 @@ Registers `zel' on the following hooks:
     (remove-hook 'focus-in-hook #'zel--update-frecent-list)
     (remove-hook 'kill-emacs-hook #'zel-write-history)))
 
+
+(defun zel-version ()
+  "Current installed version of `zel'."
+  (interactive)
+  (message "zel %s on %s"
+           "0.2.0-pre"
+           (emacs-version)))
+
 ;;;; Footer
 
 (provide 'zel)
