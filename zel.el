@@ -5,7 +5,7 @@
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
 ;; URL: https://github.com/rudolfochrist/zel
 ;; Version: 0.2.0-pre
-;; Package-Requires: ((emacs "25") cl-lib frecency)
+;; Package-Requires: ((emacs "25") (frecency "0.1"))
 ;; Keywords: convenience, files, matching
 
 ;;; Commentary:
