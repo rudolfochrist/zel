@@ -158,7 +158,7 @@ FILENAME has to be absolute."
   (frecency-score (cadr entry)))
 
 
-(defun zell--add-entry ()
+(defun zel--add-entry ()
   "Add a new entry to the frecent list."
   (zel--update-frecent-list t))
 
@@ -302,7 +302,7 @@ Registers `zel' on the following hooks:
   (unless (file-exists-p (expand-file-name zel-history-file))
     (zel-write-history))
   (zel-load-history)
-  (add-hook 'find-file-hook #'zell--add-entry)
+  (add-hook 'find-file-hook #'zel--add-entry)
   (add-hook 'focus-in-hook #'zel--update-frecent-list)
   (add-hook 'kill-emacs-hook #'zel-write-history))
 
@@ -313,7 +313,7 @@ Registers `zel' on the following hooks:
   (interactive)
   (zel-write-history)
   (setq zel--frecent-list nil)
-  (remove-hook 'find-file-hook #'zell--add-entry)
+  (remove-hook 'find-file-hook #'zel--add-entry)
   (remove-hook 'focus-in-hook #'zel--update-frecent-list)
   (remove-hook 'kill-emacs-hook #'zel-write-history))
 
