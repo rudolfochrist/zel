@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/rudolfochrist/zel.svg?branch=master)](https://travis-ci.org/rudolfochrist/zel)
 # zel.el --- Access frecent files easily
 
 zel tracks the most used files, based on _frecency_.  Zel is basically
