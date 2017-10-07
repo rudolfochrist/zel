@@ -37,7 +37,7 @@ Install these required packages:
 
 - [frecency](https://github.com/alphapapa/frecency.el)
 
-Then put this file in your load-path, and put this in your init
+Then put `zel.el` in your load-path, and put this in your init
 file:
 
 ```lisp
