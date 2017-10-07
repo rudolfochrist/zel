@@ -108,7 +108,7 @@
   :group 'matching)
 
 
-(defcustom zel-history-file "~/.emacs.d/zel-history"
+(defcustom zel-history-file (expand-file-name "zel-history" user-emacs-directory)
   "File where the history is saved."
   :type 'file)
 
