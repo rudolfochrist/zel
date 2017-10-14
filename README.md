@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rudolfochrist/zel.svg?branch=master)](https://travis-ci.org/rudolfochrist/zel)
+[![MELPA](https://melpa.org/packages/zel-badge.svg)](https://melpa.org/#/zel) [![Build Status](https://travis-ci.org/rudolfochrist/zel.svg?branch=master)](https://travis-ci.org/rudolfochrist/zel)
 # zel.el --- Access frecent files easily
 
 zel tracks the most used files, based on _frecency_.  Zel is basically
