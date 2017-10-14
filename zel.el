@@ -184,18 +184,6 @@ When CREATE-ENTRY-P is non-nil create new entries."
       (setq zel--frecent-list
             (cl-sort zel--frecent-list #'> :key #'zel--entry-score)))))
 
-(defun zel--frecent-file-paths ()
-  "List frecent file paths in descending order by their rank."
-  (mapcar #'car zel--frecent-list))
-
-
-(defun zel--frecent-file-paths-with-score ()
-  "List all frecent file paths with their scrore."
-  (mapcar (lambda (entry)
-            (cons (car entry)
-                  (zel--entry-score entry)))
-          zel--frecent-list))
-
 
 (defun zel--frecent-sum ()
   "Calculates the sum of items in the frecent list."
@@ -213,6 +201,19 @@ When CREATE-ENTRY-P is non-nil create new entries."
                    #'>
                    :key #'zel--entry-score))))
 
+;;;;; Public
+
+(defun zel-frecent-file-paths ()
+  "List frecent file paths in descending order by their rank."
+  (mapcar #'car zel--frecent-list))
+
+
+(defun zel-frecent-file-paths-with-score ()
+  "List all frecent file paths with their scrore."
+  (mapcar (lambda (entry)
+            (cons (car entry)
+                  (zel--entry-score entry)))
+          zel--frecent-list))
 
 ;;;;; Commands
 
@@ -247,7 +248,7 @@ When CREATE-ENTRY-P is non-nil create new entries."
 (defun zel-diplay-rankings ()
   "Show the current ranking of files."
   (interactive)
-  (let ((items (zel--frecent-file-paths-with-score)))
+  (let ((items (zel-frecent-file-paths-with-score)))
     (with-output-to-temp-buffer "*zel-frecent-rankings*"
       (set-buffer "*zel-frecent-rankings*")
       (erase-buffer)
@@ -276,7 +277,7 @@ When OPEN-DIRECTORY-P is non-nil (or by calling it with a prefix
 argument) the files directory will be opened i `dired'."
   (interactive
    (list (completing-read "Frecent: "
-                          (zel--frecent-file-paths)
+                          (zel-frecent-file-paths)
                           nil
                           t
                           zel--completing-read-history)
