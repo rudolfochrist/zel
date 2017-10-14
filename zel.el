@@ -4,7 +4,7 @@
 
 ;; Author: Sebastian Christ <rudolfo.christ@gmail.com>
 ;; URL: https://github.com/rudolfochrist/zel
-;; Version: 0.1.2-pre
+;; Version: 0.1.2
 ;; Package-Requires: ((emacs "25") (frecency "0.1"))
 ;; Keywords: convenience, files, matching
 
@@ -330,7 +330,7 @@ Registers `zel' on the following hooks:
   "Current installed version of `zel'."
   (interactive)
   (message "zel %s on %s"
-           "0.1.2-pre"
+           "0.1.2"
            (emacs-version)))
 
 ;;;; Footer
