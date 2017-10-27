@@ -19,7 +19,7 @@ The list of _frecent_ files underlies two concepts:
 
 ### MELPA
 
-If you installed from MELPA, you're done. (not on MELPA yet!)
+If you installed from MELPA, you're done.
 
 ###  use-package
 
